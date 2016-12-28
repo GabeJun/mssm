@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+<!-- 输出到控制台 -->
+<appender name="MYSTDOUT" class="org.apache.log4j.ConsoleAppender">
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="%c %d{ISO8601}-- %p -- %m%n"/>
+</layout>
+</appender>
+<!--
+DEBUG级别日志输出到D:/logs/app-debug.log
+INFOD级别日志输出到:/logs/app-info.log
+WARN级别日志输出到D:/logs/app-warn.log
+ERROR级别日志输出到D:/logs/app-error.log
+ -->
+<appender name="MYDEBUG" class="org.apache.log4j.RollingFileAppender">
+<param name="File" value="D:/logs/app-debug.log"/>
+<param name="Append" value="true"/> <!-- 设置是否在重启服务时，在原有日志基础添加新日志 -->
+<param name="MaxFileSize" value="5120KB"/> <!-- 每个文件最大容量 -->
+<param name="MaxBackupIndex" value="10"/> <!-- 文件最大保存数量，循环覆盖 -->
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="%c %d{ISO8601}-- %p -- %m%n"/>
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="DEBUG" />
+<param name="LevelMax" value="DEBUG" />
+</filter>
+</appender>
+
+<appender name="MYINFO" class="org.apache.log4j.RollingFileAppender">
+<param name="File" value="D:/logs/app-info.log"/>
+<param name="Append" value="true"/>
+<param name="MaxFileSize" value="5120KB"/>
+<param name="MaxBackupIndex" value="10"/>
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="%c %d{ISO8601}-- %p -- %m%n"/>
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="INFO" />
+<param name="LevelMax" value="INFO" />
+</filter>
+</appender>
+
+<appender name="MYWARN" class="org.apache.log4j.RollingFileAppender">
+<param name="File" value="D:/logs/app-warn.log"/>
+<param name="Append" value="true"/>
+<param name="MaxFileSize" value="5120KB"/>
+<param name="MaxBackupIndex" value="10"/>
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="%c %d{ISO8601}-- %p -- %m%n"/>
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="WARN" />
+<param name="LevelMax" value="WARN" />
+</filter>
+</appender>
+
+<appender name="MYERROR" class="org.apache.log4j.RollingFileAppender">
+<param name="File" value="D:/logs/app-error.log"/>
+<param name="Append" value="true"/>
+<param name="MaxFileSize" value="5120KB"/>
+<param name="MaxBackupIndex" value="10"/>
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="%c %d{ISO8601}-- %p -- %m%n"/>
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="ERROR" />
+<param name="LevelMax" value="ERROR" />
+</filter>
+</appender>
+<!-- 输出到数据库 -->
+<appender name="login" class="org.apache.log4j.jdbc.JDBCAppender"><!-- 通用 -->
+    <param name="URL" value="jdbc:mysql://192.168.2.227:3306/mssm?useUnicode=true&characterEncoding=utf-8"/>
+    <param name="user" value="root"/> 
+    <param name="password" value="root"/> 
+    <param name="driver" value="com.mysql.jdbc.Driver"/>
+    <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="insert into log4j(log4j_id,create_date,thread_,level_,classname,message) values(seq_log4j.nextval,sysdate,\'%t\',\'%-5p\',\'%c\',\'%m\')"/>
+    </layout>
+</appender>
+<appender name="db" class="org.apache.log4j.jdbc.JDBCAppender"><!-- 通用 -->
+    <param name="URL" value="jdbc:mysql://192.168.2.227:3306/mssm?useUnicode=true&characterEncoding=utf-8"/>
+    <param name="user" value="root"/> 
+    <param name="password" value="root"/> 
+    <param name="driver" value="com.mysql.jdbc.Driver"/>
+    <layout class="org.apache.log4j.PatternLayout">
+        <param name="ConversionPattern" value="insert into log4j(log4j_id,create_date,thread_,level_,classname,message,log_type,log_ip) values(seq_log4j.nextval,sysdate,\'%t\',\'%-5p\','%X{classname}',\'%m\','%X{log_type}','%X{log_ip}')"/>
+    </layout>
+</appender>
+<logger name="login" additivity="false">
+        <level value="info" />
+        <appender-ref ref="login" />
+    </logger>
+    <logger name="db" additivity="false">
+        <level value="info" />
+        <appender-ref ref="db" />
+    </logger>
+
+<root>
+<priority value="debug"/>  <!-- 测试的时候使用debug,正式部署可以改为warn -->
+<appender-ref ref="MYSTDOUT"/><!-- 项目正式部署，不需要控制台输出 -->
+<appender-ref ref="MYDEBUG"/>
+<appender-ref ref="MYINFO"/>
+<appender-ref ref="MYWARN"/>
+<appender-ref ref="MYERROR"/>
+</root>
+
+</log4j:configuration>

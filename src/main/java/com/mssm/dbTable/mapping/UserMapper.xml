@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mssm.dbTable.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.mssm.dbTable.pojo.User" >
+    <id column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="USER_NICKNAME" property="userNickname" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ANSWER" property="answer" jdbcType="VARCHAR" />
+    <result column="QUESTION" property="question" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="DATE" />
+    <result column="USER_MONEY" property="userMoney" jdbcType="DECIMAL" />
+    <result column="FROZEN_MONEY" property="frozenMoney" jdbcType="DECIMAL" />
+    <result column="PAY_POINTS" property="payPoints" jdbcType="DECIMAL" />
+    <result column="USER_LEVEL" property="userLevel" jdbcType="INTEGER" />
+    <result column="STATE" property="state" jdbcType="INTEGER" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="USER_ADDRESS" property="userAddress" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="PIC_URL" property="picUrl" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="VARCHAR" />
+    <result column="LAST_IP" property="lastIp" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="PARENT_NAME" property="parentName" jdbcType="VARCHAR" />
+    <result column="LOGIN_AMOUNT" property="loginAmount" jdbcType="INTEGER" />
+    <result column="FAILTURE_AMOUNT" property="failtureAmount" jdbcType="INTEGER" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="DATE" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="DATE" />
+    <result column="LOGIN_DATE" property="loginDate" jdbcType="DATE" />
+    <result column="LOGIN_ERROR_DATE" property="loginErrorDate" jdbcType="DATE" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="FROZEN_POINTS" property="frozenPoints" jdbcType="DECIMAL" />
+    <result column="TRUE_PIC" property="truePic" jdbcType="VARCHAR" />
+    <result column="YIBAO_ACCOUNT" property="yibaoAccount" jdbcType="VARCHAR" />
+    <result column="YIBAO_ACCOUNT_INNER" property="yibaoAccountInner" jdbcType="VARCHAR" />
+    <result column="YIBAO_PWD" property="yibaoPwd" jdbcType="VARCHAR" />
+    <result column="ID_CARD" property="idCard" jdbcType="VARCHAR" />
+    <result column="PERSON_ID" property="personId" jdbcType="VARCHAR" />
+    <result column="PERSON_NAME" property="personName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, LOGIN_NAME, LOGIN_PASSWORD, USER_NICKNAME, USER_NAME, EMAIL, ANSWER, QUESTION, 
+    SEX, BIRTHDAY, USER_MONEY, FROZEN_MONEY, PAY_POINTS, USER_LEVEL, STATE, MOBILE, PHONE, 
+    USER_ADDRESS, POST_CODE, PIC_URL, LOCATION, LAST_IP, PARENT_ID, PARENT_NAME, LOGIN_AMOUNT, 
+    FAILTURE_AMOUNT, CREATE_DATE, UPDATE_DATE, LOGIN_DATE, LOGIN_ERROR_DATE, CREATE_USER, 
+    UPDATE_USER, FROZEN_POINTS, TRUE_PIC, YIBAO_ACCOUNT, YIBAO_ACCOUNT_INNER, YIBAO_PWD, 
+    ID_CARD, PERSON_ID, PERSON_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_user
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from common_user
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.mssm.dbTable.pojo.User" >
+    insert into common_user (USER_ID, LOGIN_NAME, LOGIN_PASSWORD, 
+      USER_NICKNAME, USER_NAME, EMAIL, 
+      ANSWER, QUESTION, SEX, 
+      BIRTHDAY, USER_MONEY, FROZEN_MONEY, 
+      PAY_POINTS, USER_LEVEL, STATE, 
+      MOBILE, PHONE, USER_ADDRESS, 
+      POST_CODE, PIC_URL, LOCATION, 
+      LAST_IP, PARENT_ID, PARENT_NAME, 
+      LOGIN_AMOUNT, FAILTURE_AMOUNT, CREATE_DATE, 
+      UPDATE_DATE, LOGIN_DATE, LOGIN_ERROR_DATE, 
+      CREATE_USER, UPDATE_USER, FROZEN_POINTS, 
+      TRUE_PIC, YIBAO_ACCOUNT, YIBAO_ACCOUNT_INNER, 
+      YIBAO_PWD, ID_CARD, PERSON_ID, 
+      PERSON_NAME)
+    values (#{userId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
+      #{userNickname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{birthday,jdbcType=DATE}, #{userMoney,jdbcType=DECIMAL}, #{frozenMoney,jdbcType=DECIMAL}, 
+      #{payPoints,jdbcType=DECIMAL}, #{userLevel,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{lastIp,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{parentName,jdbcType=VARCHAR}, 
+      #{loginAmount,jdbcType=INTEGER}, #{failtureAmount,jdbcType=INTEGER}, #{createDate,jdbcType=DATE}, 
+      #{updateDate,jdbcType=DATE}, #{loginDate,jdbcType=DATE}, #{loginErrorDate,jdbcType=DATE}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{frozenPoints,jdbcType=DECIMAL}, 
+      #{truePic,jdbcType=VARCHAR}, #{yibaoAccount,jdbcType=VARCHAR}, #{yibaoAccountInner,jdbcType=VARCHAR}, 
+      #{yibaoPwd,jdbcType=VARCHAR}, #{idCard,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, 
+      #{personName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mssm.dbTable.pojo.User" >
+    insert into common_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="loginPassword != null" >
+        LOGIN_PASSWORD,
+      </if>
+      <if test="userNickname != null" >
+        USER_NICKNAME,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="answer != null" >
+        ANSWER,
+      </if>
+      <if test="question != null" >
+        QUESTION,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="userMoney != null" >
+        USER_MONEY,
+      </if>
+      <if test="frozenMoney != null" >
+        FROZEN_MONEY,
+      </if>
+      <if test="payPoints != null" >
+        PAY_POINTS,
+      </if>
+      <if test="userLevel != null" >
+        USER_LEVEL,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="userAddress != null" >
+        USER_ADDRESS,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="picUrl != null" >
+        PIC_URL,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+      <if test="lastIp != null" >
+        LAST_IP,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="parentName != null" >
+        PARENT_NAME,
+      </if>
+      <if test="loginAmount != null" >
+        LOGIN_AMOUNT,
+      </if>
+      <if test="failtureAmount != null" >
+        FAILTURE_AMOUNT,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="loginDate != null" >
+        LOGIN_DATE,
+      </if>
+      <if test="loginErrorDate != null" >
+        LOGIN_ERROR_DATE,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+      <if test="frozenPoints != null" >
+        FROZEN_POINTS,
+      </if>
+      <if test="truePic != null" >
+        TRUE_PIC,
+      </if>
+      <if test="yibaoAccount != null" >
+        YIBAO_ACCOUNT,
+      </if>
+      <if test="yibaoAccountInner != null" >
+        YIBAO_ACCOUNT_INNER,
+      </if>
+      <if test="yibaoPwd != null" >
+        YIBAO_PWD,
+      </if>
+      <if test="idCard != null" >
+        ID_CARD,
+      </if>
+      <if test="personId != null" >
+        PERSON_ID,
+      </if>
+      <if test="personName != null" >
+        PERSON_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userMoney != null" >
+        #{userMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenMoney != null" >
+        #{frozenMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payPoints != null" >
+        #{payPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null" >
+        #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAmount != null" >
+        #{loginAmount,jdbcType=INTEGER},
+      </if>
+      <if test="failtureAmount != null" >
+        #{failtureAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="loginDate != null" >
+        #{loginDate,jdbcType=DATE},
+      </if>
+      <if test="loginErrorDate != null" >
+        #{loginErrorDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="frozenPoints != null" >
+        #{frozenPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="truePic != null" >
+        #{truePic,jdbcType=VARCHAR},
+      </if>
+      <if test="yibaoAccount != null" >
+        #{yibaoAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="yibaoAccountInner != null" >
+        #{yibaoAccountInner,jdbcType=VARCHAR},
+      </if>
+      <if test="yibaoPwd != null" >
+        #{yibaoPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        #{personName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mssm.dbTable.pojo.User" >
+    update common_user
+    <set >
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null" >
+        USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        ANSWER = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="question != null" >
+        QUESTION = #{question,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="userMoney != null" >
+        USER_MONEY = #{userMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="frozenMoney != null" >
+        FROZEN_MONEY = #{frozenMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payPoints != null" >
+        PAY_POINTS = #{payPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="userLevel != null" >
+        USER_LEVEL = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null" >
+        USER_ADDRESS = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIp != null" >
+        LAST_IP = #{lastIp,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        PARENT_NAME = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAmount != null" >
+        LOGIN_AMOUNT = #{loginAmount,jdbcType=INTEGER},
+      </if>
+      <if test="failtureAmount != null" >
+        FAILTURE_AMOUNT = #{failtureAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="loginDate != null" >
+        LOGIN_DATE = #{loginDate,jdbcType=DATE},
+      </if>
+      <if test="loginErrorDate != null" >
+        LOGIN_ERROR_DATE = #{loginErrorDate,jdbcType=DATE},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="frozenPoints != null" >
+        FROZEN_POINTS = #{frozenPoints,jdbcType=DECIMAL},
+      </if>
+      <if test="truePic != null" >
+        TRUE_PIC = #{truePic,jdbcType=VARCHAR},
+      </if>
+      <if test="yibaoAccount != null" >
+        YIBAO_ACCOUNT = #{yibaoAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="yibaoAccountInner != null" >
+        YIBAO_ACCOUNT_INNER = #{yibaoAccountInner,jdbcType=VARCHAR},
+      </if>
+      <if test="yibaoPwd != null" >
+        YIBAO_PWD = #{yibaoPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        ID_CARD = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        PERSON_ID = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null" >
+        PERSON_NAME = #{personName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mssm.dbTable.pojo.User" >
+    update common_user
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      USER_NICKNAME = #{userNickname,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ANSWER = #{answer,jdbcType=VARCHAR},
+      QUESTION = #{question,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=INTEGER},
+      BIRTHDAY = #{birthday,jdbcType=DATE},
+      USER_MONEY = #{userMoney,jdbcType=DECIMAL},
+      FROZEN_MONEY = #{frozenMoney,jdbcType=DECIMAL},
+      PAY_POINTS = #{payPoints,jdbcType=DECIMAL},
+      USER_LEVEL = #{userLevel,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=INTEGER},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      USER_ADDRESS = #{userAddress,jdbcType=VARCHAR},
+      POST_CODE = #{postCode,jdbcType=VARCHAR},
+      PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      LAST_IP = #{lastIp,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      PARENT_NAME = #{parentName,jdbcType=VARCHAR},
+      LOGIN_AMOUNT = #{loginAmount,jdbcType=INTEGER},
+      FAILTURE_AMOUNT = #{failtureAmount,jdbcType=INTEGER},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      UPDATE_DATE = #{updateDate,jdbcType=DATE},
+      LOGIN_DATE = #{loginDate,jdbcType=DATE},
+      LOGIN_ERROR_DATE = #{loginErrorDate,jdbcType=DATE},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      FROZEN_POINTS = #{frozenPoints,jdbcType=DECIMAL},
+      TRUE_PIC = #{truePic,jdbcType=VARCHAR},
+      YIBAO_ACCOUNT = #{yibaoAccount,jdbcType=VARCHAR},
+      YIBAO_ACCOUNT_INNER = #{yibaoAccountInner,jdbcType=VARCHAR},
+      YIBAO_PWD = #{yibaoPwd,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=VARCHAR},
+      PERSON_ID = #{personId,jdbcType=VARCHAR},
+      PERSON_NAME = #{personName,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

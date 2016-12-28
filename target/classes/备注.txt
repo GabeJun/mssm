@@ -1,0 +1,5 @@
+springmvc4.1
+mybatis 3.6
+log4j
+servlet
+缓存 @Cacheable
